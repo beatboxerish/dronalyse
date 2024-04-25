@@ -1,4 +1,4 @@
-from src.loaders.image_metadata_loader import ImageMetadataLoader
+from dronalyse.loaders.image_metadata_loader import ImageMetadataLoader
 
 # custom variables
 image_folders = ["/Users/ishannangia/Desktop/TfW/photogrammetry expt/a2s/",

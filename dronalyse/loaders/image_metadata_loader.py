@@ -1,7 +1,7 @@
 from exiftool import ExifToolHelper
 import pandas as pd
-from src.utils.general_utils import (get_select_metadata, append_information_to_dict,
-                                     get_images_from_image_folder, preprocess_dtype_cols)
+from dronalyse.utils.general_utils import (get_select_metadata, append_information_to_dict,
+                                           get_images_from_image_folder, preprocess_dtype_cols)
 
 
 class ImageMetadataLoader:
