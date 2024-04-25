@@ -1,2 +1,8 @@
 # pycharm project files
 .idea
+
+# results folder
+results
+
+# pycache
+__pycache__

@@ -36,7 +36,7 @@ def append_information_to_dict(main_dict, append_info_from_dict):
     return main_dict
 
 
-def preprocess_dtype_cols(df, float_cols, dt_cols, dt_formats=None):
+def preprocess_dtype_cols(df, float_cols=None, dt_cols=None, dt_formats=None):
     """
     Preprocess dataframe columns to change their types and more...
     :param df: pandas dataframe
@@ -45,19 +45,21 @@ def preprocess_dtype_cols(df, float_cols, dt_cols, dt_formats=None):
     :param dt_formats: list of datetime formats for each column
     :return: preprocessed dataframe
     """
-    try:
-        df[float_cols] = df[float_cols].astype(float)
-    except:
-        print("Error in changing dtype of float columns")
-    try:
-        for idx, dt_col in enumerate(dt_cols):
-            if dt_formats:
-                dt_format = dt_formats[idx]
-            else:
-                dt_format = None
-            df[dt_col] = pd.to_datetime(df[dt_col], format=dt_format)
-    except:
-        print("Error in changing dtype of datetime columns")
+    if float_cols:
+        try:
+            df[float_cols] = df[float_cols].astype(float)
+        except:
+            print("Error in changing dtype of float columns")
+    if dt_cols:
+        try:
+            for idx, dt_col in enumerate(dt_cols):
+                if dt_formats:
+                    dt_format = dt_formats[idx]
+                else:
+                    dt_format = None
+                df[dt_col] = pd.to_datetime(df[dt_col], format=dt_format)
+        except:
+            print("Error in changing dtype of datetime columns")
     return df
 
 

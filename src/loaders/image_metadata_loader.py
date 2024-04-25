@@ -1,6 +1,7 @@
 from exiftool import ExifToolHelper
 import pandas as pd
-from src.utils.general_utils import get_select_metadata, append_information_to_dict, get_images_from_image_folder
+from src.utils.general_utils import (get_select_metadata, append_information_to_dict,
+                                     get_images_from_image_folder, preprocess_dtype_cols)
 
 
 class ImageMetadataLoader:
@@ -26,6 +27,12 @@ class ImageMetadataLoader:
                     metadata = get_select_metadata(metadata, metadata_keys)
                 append_information_to_dict(self.all_images_dict, metadata)
 
-    def get_exif_data_as_df(self):
+    def get_exif_data_as_df(self, float_cols=None, dt_cols=None, dt_formats=None):
         df_image = pd.DataFrame(self.all_images_dict)
+        if float_cols:
+            df_image = preprocess_dtype_cols(df_image, float_cols)
+        if dt_cols:
+            df_image = preprocess_dtype_cols(df_image, dt_cols=dt_cols, dt_formats=dt_formats)
         return df_image
+
+
