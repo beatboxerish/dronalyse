@@ -1,4 +1,10 @@
 import pandas as pd
+from glob import glob
+import os
+
+# TODO: Write all the image formats
+# TODO: Centralise this variable
+IMAGE_FORMATS = ["JPG"]
 
 
 def get_select_metadata(metadata, keys_for_metadata):
@@ -53,3 +59,12 @@ def preprocess_dtype_cols(df, float_cols, dt_cols, dt_formats=None):
     except:
         print("Error in changing dtype of datetime columns")
     return df
+
+
+def get_images_from_image_folder(image_folder):
+    images = []
+    for fmt in IMAGE_FORMATS:
+        images.extend(
+            glob(os.path.join(image_folder, "*." + fmt))
+        )
+    return images
