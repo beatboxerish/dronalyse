@@ -4,6 +4,8 @@ from dronalyse.utils.general_utils import (get_select_metadata, append_informati
                                            get_images_from_image_folder, preprocess_dtype_cols)
 
 
+# TODO: allow using of single file instead of folders
+# TODO: allow using of multiple file names instead of folders
 class ImageMetadataLoader:
 
     def __init__(self, image_folders):
