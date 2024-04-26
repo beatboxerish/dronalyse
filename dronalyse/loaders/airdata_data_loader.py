@@ -1,4 +1,5 @@
 import pandas as pd
+from dronalyse.utils.general_utils import preprocess_dtype_cols
 from dronalyse.utils.airdata_utils import get_airdata_files_from_folder
 
 
@@ -25,3 +26,11 @@ class AirdataDataLoader:
             self.all_airdata_df.reset_index(drop=True, inplace=True)
             if airdata_keys:
                 self.all_airdata_df = self.all_airdata_df[airdata_keys]
+
+    # TODO: Make returning of dataframe optional through argument
+    def preprocess_cols(self, float_cols, dt_cols, dt_formats=None):
+        if float_cols:
+            self.all_airdata_df = preprocess_dtype_cols(self.all_airdata_df, float_cols)
+        if dt_cols:
+            df_image = preprocess_dtype_cols(self.all_airdata_df, dt_cols=dt_cols, dt_formats=dt_formats)
+        return self.all_airdata_df
